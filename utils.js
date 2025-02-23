@@ -1,7 +1,7 @@
 const queryLimit = 20;
 
 function getBasePath() {
-  return '/';
+  return '/demo/skillnotes';
 }
 
 function getKnexConnection() {
