@@ -1,4 +1,4 @@
-const basePath = '';
+const basePath = '/demo/skillnotes';
 
 export const getNotes = ({ age, search, page } = {}) => {
   age = age ?? null;
