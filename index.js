@@ -12,7 +12,7 @@ function appInit() {
   app.set("view engine", "njk");
 
   app.use(express.json());
-  app.use(express.static("public"));
+  app.use(getBasePath(), express.static("public"));
   app.use(getBasePath(), webRouter)
   app.use(getBasePath(), apiRouter)
 
