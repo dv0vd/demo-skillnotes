@@ -6,15 +6,15 @@ services:
       - ./:/app
     env_file:
       - ./.env
-    command: sh -c 'cd /app && npm run migrate && npm run dev'
-    # command: sh -c 'cd /app && npm run migrate && npm start'
+    # command: sh -c 'cd /app && npm run migrate && npm run dev'
+    command: sh -c 'cd /app && npm run migrate && npm start'
     networks:
       podman_network:
         aliases:
           - skillnotes-app
     restart: unless-stopped
-    ports:
-      - 3000:3000
+    # ports:
+    #   - 3000:3000
     deploy:
       resources:
         limits:
@@ -35,8 +35,6 @@ services:
         aliases:
           - skillnotes-db
     restart: unless-stopped
-    ports:
-      - 5432:5432
     deploy:
       resources:
         limits:
@@ -44,5 +42,5 @@ services:
           memory: ${SKILLNOTES_DB_MEMORY}
 networks:
   podman_network:
-    # external: true
-    driver: bridge
+    external: true
+    # driver: bridge
