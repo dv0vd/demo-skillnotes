@@ -1,5 +1,5 @@
 const userService = require("../../services/userService");
-const { getBasePath } = require("../../utils");
+const { getBasePath, getSIDCookieName } = require("../../utils");
 
 async function dashboard(req, res) {
   if (!userService.isAuthenticated(req)) {
@@ -28,7 +28,7 @@ async function login(req, res) {
 
   const sessionId = await userService.createSession(user.id);
 
-  return res.cookie("SID", sessionId, { httpOnly: true }).redirect(getBasePath());
+  return res.cookie(getSIDCookieName(), sessionId, { httpOnly: true }).redirect(getBasePath());
 }
 
 async function logout(req, res) {
@@ -38,7 +38,7 @@ async function logout(req, res) {
     await userService.deleteSession(sessionId);
   }
 
-  return res.clearCookie("SID").redirect(getBasePath());
+  return res.clearCookie(getSIDCookieName()).redirect(getBasePath());
 }
 
 async function signup(req, res) {
@@ -55,7 +55,7 @@ async function signup(req, res) {
   const user = await userService.register(username, req.body.password);
   const sessionId = await userService.createSession(user.id);
 
-  return res.cookie("SID", sessionId, { httpOnly: true }).redirect(getBasePath());
+  return res.cookie(getSIDCookieName(), sessionId, { httpOnly: true }).redirect(getBasePath());
 }
 
 module.exports = {

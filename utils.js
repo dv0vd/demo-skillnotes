@@ -18,8 +18,13 @@ function getKnexConnection() {
 
 }
 
+function getSIDCookieName() {
+  return 'SID_skillnotes';
+}
+
 module.exports = {
   queryLimit,
   getBasePath,
   getKnexConnection,
+  getSIDCookieName,
 }
