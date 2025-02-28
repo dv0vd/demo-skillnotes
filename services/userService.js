@@ -1,15 +1,19 @@
 const userRepository = require('../repositories/postgres/userRepository')
 const noteService = require('../services/noteService')
+const { getSIDCookieName } = require("../utils");
+
 
 module.exports = {
   auth: async function (req, res, next) {
-    const sessionId = req.cookies.SID;
+    const sessionId = req.cookies[getSIDCookieName()];
     if (sessionId === undefined) {
+      res.clearCookie(getSIDCookieName());
       return next();
     }
 
     const userId = await userRepository.getUserIdBySessionId(sessionId)
     if (!userId) {
+      res.clearCookie(getSIDCookieName());
       return next();
     }
 

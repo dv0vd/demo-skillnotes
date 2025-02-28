@@ -3,7 +3,7 @@ const { getBasePath, getSIDCookieName } = require("../../utils");
 
 async function dashboard(req, res) {
   if (!userService.isAuthenticated(req)) {
-    return res.redirect(getBasePath());
+    return res.clearCookie(getSIDCookieName()).redirect(getBasePath());
   }
 
   res.render("dashboard", { user: req.user });
@@ -32,7 +32,7 @@ async function login(req, res) {
 }
 
 async function logout(req, res) {
-  const sessionId = req.cookies.SID;
+  const sessionId = req.cookies[getSIDCookieName()];
 
   if (sessionId) {
     await userService.deleteSession(sessionId);

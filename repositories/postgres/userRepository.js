@@ -1,4 +1,5 @@
 const { getKnexConnection } = require('../../utils');
+const uuid = require("uuid");
 
 require('dotenv').config()
 
@@ -18,6 +19,10 @@ module.exports = {
   },
 
   deleteSession: async function (id) {
+    if (!uuid.validate(id)) {
+     return null;
+    }
+
     return await knex('sessions').where({ id }).delete();
   },
 
@@ -34,6 +39,10 @@ module.exports = {
   },
 
   getUserIdBySessionId: async function (sessionId) {
+    if (!uuid.validate(sessionId)) {
+      return null;
+    }
+
     const [session] = await knex('sessions').where({ id: sessionId }).returning('user_id');
 
     return session?.user_id
