@@ -25,6 +25,20 @@
   let page = 1;
   let entries = [];
 
+  const debounce = (callback, delay = 300) => {
+    let timeoutId = null;
+
+    return function (...args) {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      timeoutId = setTimeout(() => {
+        callback.apply(this, args);
+      }, delay);
+    };
+  };
+
   const fetch = ({ reset = false } = {}) => {
     if (reset) {
       page = 1;
@@ -49,6 +63,8 @@
     }
     return fetch({ reset: true });
   };
+
+  const searchByTitle = debounce(fetchFromScratch, 300);
 
   const refetch = async () => {
     let oldPage = page;
@@ -119,7 +135,7 @@
       <i uk-search-icon class="uk-icon uk-search-icon fas fa-search" />
       <input
         bind:value={search}
-        on:keyup={fetchFromScratch}
+        on:keyup={searchByTitle}
         class="uk-search-input uk-width-1-1"
         type="search"
         placeholder="Поиск по заголовку" />
