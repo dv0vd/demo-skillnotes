@@ -32,12 +32,14 @@ stop:
 
 restart: stop start
 
-
 GREEN='\033[1;32m'
 WHITE='\033[1;37m'
+RESET='\033[0m'
 help:
-# @echo -e ${GREEN}init'             '${WHITE}— initialize the project
-# @echo -e ${GREEN}start'            '${WHITE}— start the project
-# @echo -e ${GREEN}start-app'        '${WHITE}— start the project without a database
-# @echo -e ${GREEN}stop'             '${WHITE}— stop the project
-# @echo -e ${GREEN}restart'          '${WHITE}— restart the project
+	@echo -e ${GREEN}init'             '${WHITE}— initialize the project
+	@echo -e ${GREEN}build'            '${WHITE}— build the project
+	@echo -e ${GREEN}build-dev'        '${WHITE}— build the project with in mode (automatically rebuild on file changes)
+	@echo -e ${GREEN}start'            '${WHITE}— start the project
+	@echo -e ${GREEN}start-app'        '${WHITE}— start the project without a database
+	@echo -e ${GREEN}stop'             '${WHITE}— stop the project
+	@echo -e ${GREEN}restart'          '${WHITE}— restart the project
