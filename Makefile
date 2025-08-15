@@ -4,21 +4,21 @@ init:
 	podman run \
   --rm \
   -v ./:/app \
-  docker.io/node:20.18.1-bookworm \
+  docker.io/node:24.5.0-alpine \
   sh -c 'cd /app && npm ci --verbose'
 
 build:
 	podman run \
   --rm \
   -v ./:/app \
-  docker.io/node:20.18.1-bookworm \
+  docker.io/node:24.5.0-alpine \
   sh -c 'cd /app && npm run build --verbose'
 
 build-dev:
 	podman run \
   --rm \
   -v ./:/app \
-  docker.io/node:20.18.1-bookworm \
+  docker.io/node:24.5.0-alpine \
   sh -c 'cd /app && npm run build-dev --verbose'
 
 start:

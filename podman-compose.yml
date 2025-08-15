@@ -24,7 +24,7 @@ services:
     #   - db
   db:
     container_name: skillnotes_db
-    image: docker.io/postgres:15.10-bookworm
+    image: docker.io/postgres:15.14-alpine
     environment:
       POSTGRES_DB: ${SKILLNOTES_DB_NAME}
       POSTGRES_USER: ${SKILLNOTES_DB_USER}
