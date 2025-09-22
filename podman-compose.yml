@@ -1,7 +1,7 @@
 services:
   app:
     container_name: skillnotes_app
-    image: docker.io/node:20.18.1-bookworm
+    image: docker.io/node:24.5.0-alpine
     volumes:
       - ./:/app
     env_file:
@@ -13,15 +13,15 @@ services:
         aliases:
           - skillnotes-app
     restart: unless-stopped
-    # ports:
-    #   - 3000:3000
+    ports:
+      - 3000:3000
     deploy:
       resources:
         limits:
           cpus: ${SKILLNOTES_APP_CPUS}
           memory: ${SKILLNOTES_APP_MEMORY}
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
   db:
     container_name: skillnotes_db
     image: docker.io/postgres:15.14-alpine
@@ -42,5 +42,4 @@ services:
           memory: ${SKILLNOTES_DB_MEMORY}
 networks:
   podman_network:
-    external: true
-    # driver: bridge
+    driver: bridge
