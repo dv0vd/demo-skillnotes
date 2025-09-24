@@ -16,7 +16,7 @@
       {% block content %}{% endblock %}
     </section>
     <script>
-      const basePath = '/demo/skillnotes';
+      const basePath = '$BASE_PATH';
       if (window.location.pathname.endsWith('login')) {
         window.history.replaceState({}, document.title, basePath);
       }

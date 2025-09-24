@@ -37,7 +37,6 @@ const matchPattern = (path, { keys, pattern }) => {
 
 export const getActiveNoteId = ($location) => {
   const loc = $location.replace(new RegExp("^" + routerPrefix), "");
-
   for (const p of [routeRegexes.view, routeRegexes.edit]) {
     const m = matchPattern(loc, p);
     if (m && m.id) {

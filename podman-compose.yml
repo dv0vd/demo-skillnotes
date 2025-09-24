@@ -1,7 +1,7 @@
 services:
   app:
-    container_name: skillnotes_app
-    image: docker.io/node:24.5.0-alpine
+    container_name: skillnotes-app
+    image: docker.io/node:24.5.0-bookworm
     volumes:
       - ./:/app
     env_file:
@@ -9,37 +9,36 @@ services:
     # command: sh -c 'cd /app && npm run migrate && npm run dev'
     command: sh -c 'cd /app && npm run migrate && npm start'
     networks:
-      podman_network:
+      skillnotes_network:
         aliases:
-          - skillnotes-app
+          - app
     restart: unless-stopped
     ports:
       - 3000:3000
     deploy:
       resources:
         limits:
-          cpus: ${SKILLNOTES_APP_CPUS}
-          memory: ${SKILLNOTES_APP_MEMORY}
+          cpus: ${APP_CPUS}
+          memory: ${APP_MEMORY}
     depends_on:
       - db
   db:
-    container_name: skillnotes_db
+    container_name: skillnotes-db
     image: docker.io/postgres:15.14-alpine
     environment:
-      POSTGRES_DB: ${SKILLNOTES_DB_NAME}
-      POSTGRES_USER: ${SKILLNOTES_DB_USER}
-    env_file:
-      - ./.env
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     networks:
-      podman_network:
+      skillnotes_network:
         aliases:
-          - skillnotes-db
+          - db
     restart: unless-stopped
     deploy:
       resources:
         limits:
-          cpus: ${SKILLNOTES_DB_CPUS}
-          memory: ${SKILLNOTES_DB_MEMORY}
+          cpus: ${DB_CPUS}
+          memory: ${DB_MEMORY}
 networks:
-  podman_network:
+  skillnotes_network:
     driver: bridge

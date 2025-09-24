@@ -109,3 +109,8 @@ public/bundle.js
 public/bundle.js.map
 public/bundle.css
 public/bundle.css.map
+
+utils.js
+views/_layout.njk
+views/404.njk
+frontend-src/api.js

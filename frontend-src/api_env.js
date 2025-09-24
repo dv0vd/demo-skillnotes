@@ -1,4 +1,4 @@
-const basePath = '/';
+const basePath = '$BASE_PATH';
 
 export const getNotes = ({ age, search, page } = {}) => {
   age = age ?? null;

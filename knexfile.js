@@ -5,11 +5,11 @@ require('dotenv').config()
 module.exports = {
   client: 'pg',
   connection: {
-    host: process.env.SKILLNOTES_DB_HOST,
-    port: process.env.SKILLNOTES_DB_PORT || 5432,
-    database: process.env.SKILLNOTES_DB_NAME,
-    user: process.env.SKILLNOTES_DB_USER,
-    password: process.env.SKILLNOTES_DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT || 5432,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
   },
   migrations: {
     tableName: 'migrations',
