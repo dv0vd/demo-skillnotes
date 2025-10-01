@@ -39,6 +39,12 @@ services:
         limits:
           cpus: ${DB_CPUS}
           memory: ${DB_MEMORY}
+    healthcheck:
+      test: pg_isready
+      interval: 5s
+      timeout: 30s
+      retries: 3
+      start_period: 30s
 networks:
   skillnotes_network:
     driver: bridge
