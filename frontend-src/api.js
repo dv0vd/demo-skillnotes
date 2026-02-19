@@ -1,4 +1,4 @@
-const basePath = '/';
+const basePath = window.RUNTIME_CONFIG?.basePath ?? '/';
 
 export const getNotes = ({ age, search, page } = {}) => {
   age = age ?? null;

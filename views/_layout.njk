@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/brands.min.css" />
-    <link rel="icon" href="${BASE_PATH}favicon.ico">
+    <link rel="icon" href="{{ basePath }}favicon.ico">
+    <script>
+      window.RUNTIME_CONFIG = {
+        basePath: {{ basePath | dump | safe }}
+      };
+    </script>
     {% block style %}{% endblock %}
   </head>
   <body>
@@ -16,7 +21,7 @@
       {% block content %}{% endblock %}
     </section>
     <script>
-      const basePath = '$BASE_PATH';
+      const basePath = "{{ basePath }}";
       if (window.location.pathname.endsWith('login')) {
         window.history.replaceState({}, document.title, basePath);
       }

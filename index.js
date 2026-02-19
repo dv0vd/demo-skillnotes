@@ -12,6 +12,12 @@ function appInit() {
   app.set("view engine", "njk");
 
   app.use(express.json());
+
+  app.use((req, res, next) => {
+    res.locals.basePath = getBasePath();
+    next();
+  });
+
   app.use(getBasePath(), express.static("public"));
   app.use(getBasePath(), webRouter)
   app.use(getBasePath(), apiRouter)

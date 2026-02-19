@@ -9,5 +9,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN npm ci --verbose
+RUN npm run build --verbose
 
 ENTRYPOINT ["sh", "entrypoint.sh"]

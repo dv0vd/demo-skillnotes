@@ -1,7 +1,7 @@
 const queryLimit = 20;
 
 function getBasePath() {
-  return '$BASE_PATH';
+  return process.env.BASE_PATH || '/';
 }
 
 function getKnexConnection() {
